@@ -17,12 +17,12 @@ function report(words) {
   console.log(n + ' letters');
 }
 var dictionary;
-function initDictionary() {
+function initDictionary(filename) {
   var dic = require('prefix-dictionary');
   verify.fn(dic.isWord, 'missing isWord');
   verify.fn(dic.isWordPrefix, 'missing isWordPrefix');
   verify.fn(dic.initDictionary, 'missing initDictionary');
-  dic.initDictionary();
+  dic.initDictionary(filename);
   return dic;
 }
 function boggleString(letters) {
@@ -118,5 +118,7 @@ boggle.score = function (word) {
 module.exports = {
   boggle: boggle,
   report: report,
-  initDictionary: initDictionary
+  initDictionary: (filename) => {
+    dictionary = initDictionary(filename);
+  }
 };
