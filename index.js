@@ -4,7 +4,7 @@ var boggle = require('./src/boggle').boggle;
 var report = require('./src/boggle').report;
 
 if (module.parent) {
-  module.exports = boggle;
+  module.exports = require('./src/boggle');
   return;
 }
 
