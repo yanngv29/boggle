@@ -16,7 +16,15 @@ function report(words) {
   console.log(words.length + ' words');
   console.log(n + ' letters');
 }
-
+var dictionary;
+function initDictionary() {
+  var dic = require('prefix-dictionary');
+  verify.fn(dic.isWord, 'missing isWord');
+  verify.fn(dic.isWordPrefix, 'missing isWordPrefix');
+  verify.fn(dic.initDictionary, 'missing initDictionary');
+  dic.initDictionary();
+  return dic;
+}
 function boggleString(letters) {
   letters = letters.toLowerCase();
   var grid = [
@@ -31,10 +39,9 @@ function boggleString(letters) {
 function boggleGrid(gridOfCharacters) {
   utils.verifyGridOfStrings(gridOfCharacters);
   console.assert(gridOfCharacters.length > 0, 'empty array');
-
-  var dictionary = require('prefix-dictionary');
-  verify.fn(dictionary.isWord, 'missing isWord');
-  verify.fn(dictionary.isWordPrefix, 'missing isWordPrefix');
+  if (dictionary == undefined) {
+    dictionary = initDictionary();
+  }
 
   lowerCased = gridOfCharacters.map(function (row) {
     return row.map(function (str) {
@@ -110,5 +117,6 @@ boggle.score = function (word) {
 
 module.exports = {
   boggle: boggle,
-  report: report
+  report: report,
+  initDictionary: initDictionary
 };

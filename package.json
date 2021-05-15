@@ -35,7 +35,7 @@
     "check-types": "1.4.0",
     "lodash": "3.10.1",
     "matrix-paths-zolmeister": "0.0.4",
-    "prefix-dictionary": "0.0.2"
+    "prefix-dictionary": "git://github.com/yanngv29/prefix-dictionary.git"
   },
   "devDependencies": {
     "gt": "0.10.0",
